@@ -9,8 +9,6 @@
 #>
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-#Requires -modules Az.Storage, Az.Resources
-
 # Deprecated Message
 $DeprecatedMessage = "IMPORTANT: This function is deprecated and will be removed in the next release, please use Get-AzTableRow instead."
 
@@ -117,6 +115,8 @@ function Get-AzTableTable
 		Gets a Table object to be used in all other cmdlets.
 	.PARAMETER resourceGroup
         Resource Group where the Azure Storage Account is located
+	.PARAMETER subscritionId
+ 	Subscription ID for where the Azure Storage Account and Resource group are located
     .PARAMETER tableName
         Name of the table to retrieve
     .PARAMETER storageAccountName
@@ -138,7 +138,7 @@ function Get-AzTableTable
 		[string]$subscriptionId,
 		
 		[Parameter(Mandatory=$true)]
-        [String]$TableName,
+        	[String]$TableName,
 
 		[Parameter(ParameterSetName="AzTableStorage",Mandatory=$true)]
 		[String]$storageAccountName,
