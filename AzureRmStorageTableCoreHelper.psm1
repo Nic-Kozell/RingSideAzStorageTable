@@ -13,7 +13,6 @@
 $DeprecatedMessage = "IMPORTANT: This function is deprecated and will be removed in the next release, please use Get-AzTableRow instead."
 
 # Module Functions
-Import-Module .\RingSide\TokenHelpers.ps1 -force
 function TestAzTableEmptyKeys
 {
 	param
@@ -142,9 +141,12 @@ function Get-AzTableTable
 
 		[Parameter(ParameterSetName="AzTableStorage",Mandatory=$true)]
 		[String]$storageAccountName,
+
+  		[Parameter(ParameterSetName="AzTableStorage",Parameter(Mandatory=$true)]
+    		$AuthHeader
 		
 		[Parameter(ParameterSetName="AzStorageEmulator",Mandatory=$true)]
-        [switch]$UseStorageEmulator
+        	[switch]$UseStorageEmulator
 	)
 	
 	# Validating name
@@ -156,12 +158,10 @@ function Get-AzTableTable
 	$nullTableErrorMessage = [string]::Empty
 
 	if ($PSCmdlet.ParameterSetName -ne "AzStorageEmulator")
-	{
-  		RefreshIfExpired -TokenAlias Management -resource 'https://management.azure.com' -tokenContext managedIdentity
-
+	{  		
 		$url = "https://management.azure.com/subscriptions/$subscriptionId/resourceGroups/$resourceGroup/providers/Microsoft.Storage/storageAccounts/$storageAccountName/listKeys?api-version=2023-01-01"
 
-		$keys = Invoke-RestMethod -Method Post -Uri $url -Headers @{Authorization = $(Get-ManagedAuthHeader Management)}
+		$keys = Invoke-RestMethod -Method Post -Uri $url -Headers $AuthHeader
 
 		# $keys = Invoke-AzResourceAction -Action listKeys -ResourceType "Microsoft.Storage/storageAccounts" -ApiVersion "2017-10-01" -ResourceGroupName $resourceGroup -Name $storageAccountName -Force
 
