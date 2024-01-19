@@ -137,16 +137,16 @@ function Get-AzTableTable
 		[string]$subscriptionId,
 		
 		[Parameter(Mandatory=$true)]
-        	[String]$TableName,
+        [String]$TableName,
 
 		[Parameter(ParameterSetName="AzTableStorage",Mandatory=$true)]
 		[String]$storageAccountName,
 
-  		[Parameter(ParameterSetName="AzTableStorage",Parameter(Mandatory=$true)]
-    		$AuthHeader
+  		[Parameter(ParameterSetName="AzTableStorage",Mandatory=$true)]
+    	$AuthHeader,
 		
 		[Parameter(ParameterSetName="AzStorageEmulator",Mandatory=$true)]
-        	[switch]$UseStorageEmulator
+        [switch]$UseStorageEmulator
 	)
 	
 	# Validating name
