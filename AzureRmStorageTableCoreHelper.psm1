@@ -120,6 +120,8 @@ function Get-AzTableTable
         Name of the table to retrieve
     .PARAMETER storageAccountName
         Storage Account name where the table lives
+	.PARAMETER AuthHeader
+		Auth header for calls to the Microsoft Management endpoint
 	.EXAMPLE
 		# Getting storage table object
 		$resourceGroup = "myResourceGroup"
