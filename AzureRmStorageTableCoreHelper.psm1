@@ -9,6 +9,7 @@
 #>
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
+#Requires -modules Az.Storage
 # Deprecated Message
 $DeprecatedMessage = "IMPORTANT: This function is deprecated and will be removed in the next release, please use Get-AzTableRow instead."
 
