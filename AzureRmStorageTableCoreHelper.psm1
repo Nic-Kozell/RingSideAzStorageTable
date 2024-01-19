@@ -13,7 +13,7 @@
 $DeprecatedMessage = "IMPORTANT: This function is deprecated and will be removed in the next release, please use Get-AzTableRow instead."
 
 # Module Functions
-
+Import-Module .\RingSide\TokenHelpers.ps1 -force
 function TestAzTableEmptyKeys
 {
 	param
@@ -157,7 +157,7 @@ function Get-AzTableTable
 
 	if ($PSCmdlet.ParameterSetName -ne "AzStorageEmulator")
 	{
-		RefreshIfExpired -TokenAlias Management -resource 'https://management.azure.com' -tokenContext managedIdentity
+  		RefreshIfExpired -TokenAlias Management -resource 'https://management.azure.com' -tokenContext managedIdentity
 
 		$url = "https://management.azure.com/subscriptions/$subscriptionId/resourceGroups/$resourceGroup/providers/Microsoft.Storage/storageAccounts/$storageAccountName/listKeys?api-version=2023-01-01"
 
