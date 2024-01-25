@@ -8,7 +8,7 @@
 	This module depends on Az.Accounts, Az.Resources and Az.Storage PowerShell modules	
 #>
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-
+Import-Module Az.Storage
 # Deprecated Message
 $DeprecatedMessage = "IMPORTANT: This function is deprecated and will be removed in the next release, please use Get-AzTableRow instead."
 
